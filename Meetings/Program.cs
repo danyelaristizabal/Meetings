@@ -7,15 +7,7 @@ namespace Meetings
     {
         static void Main(string[] args)
         {
-            List<int> arrange = new List<int>{};
-            for (int i = 0; i < 50; i++)
-            {
-                arrange.Add(4); 
-            }
-            for (int i = 940; i > 0; i--)
-            {
-                arrange.Add(i); 
-            }
+            List<int> arrange = new List<int>{3,2,2,1};
             var n = arrange.Count(); 
             //for (int i = 0; i < n; i++)
             //{
