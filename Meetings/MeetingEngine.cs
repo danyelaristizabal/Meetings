@@ -22,54 +22,42 @@ namespace Meetings
         {
             ConvertToPersons();
             SaveIndexes();
-
             Console.WriteLine("Entry:");
             People.ForEach(i => Console.Write($"{ i.MeetingNumber} "));
-            Start:
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("Run");
-            OrganicePersons();
-            Console.WriteLine("Entry Organiced:");
-            People.ForEach(i => Console.Write($"{ i.MeetingNumber} "));
-            if (CheckAreEnough())
+            while (People.Count > 0)
             {
-                ConnectThePersons();
-                Console.WriteLine();
-                Console.WriteLine("Connected:");
-                People.ForEach(i => Console.Write($"{ i.MeetingNumber} "));
-                Console.WriteLine();
-                ClearUpConnected();
-                Console.WriteLine("ClearedUp:");
-                People.ForEach(i => Console.Write($"{ i.MeetingNumber} "));
-                Console.WriteLine();
-            }
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine("Run");
+                    OrganicePersons();
+                    Console.WriteLine("Entry Organiced:");
+                    People.ForEach(i => Console.Write($"{ i.MeetingNumber} "));
+                    if (CheckAreEnough())
+                    {
+                        ConnectThePersons();
+                        Console.WriteLine();
+                        Console.WriteLine("Connected:");
+                        People.ForEach(i => Console.Write($"{ i.MeetingNumber} "));
+                        Console.WriteLine();
+                        ClearUpConnected();
+                        Console.WriteLine("ClearedUp:");
+                        People.ForEach(i => Console.Write($"{ i.MeetingNumber} "));
+                        Console.WriteLine();
+                    }
 
-            else
-            {
-                Console.WriteLine();
-                Console.WriteLine($"Kicking out number: {People[0].MeetingNumber}");
-                KickOutThisNumber();
-                if (People.Count > 0) 
-                {
-                    goto Start;
-                } 
-            }
-
-
-
-            if (People.Count > 0) 
-            {
-                UpdateMeetingNumber(); 
-                Console.WriteLine("Update meeting number:");
-                People.ForEach(i => Console.Write($"{ i.MeetingNumber} "));
-                Console.WriteLine();
-                goto Start; 
-            }
-
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine($"Kicking out number: {People[0].MeetingNumber}");
+                        KickOutThisNumber();
+                    }
+                        UpdateMeetingNumber();
+                        Console.WriteLine("Update meeting number:");
+                        People.ForEach(i => Console.Write($"{ i.MeetingNumber} "));
+                        Console.WriteLine();
+                }
 
         }
-
         internal List<Person> ReturnKickedOutNumbers()
         {
             return KickedOut;

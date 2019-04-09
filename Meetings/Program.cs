@@ -1,14 +1,24 @@
 ﻿using System;
 using System.Collections.Generic; 
 using System.Linq; 
+
 namespace Meetings
 {
     class Program
     {
         static void Main(string[] args)
         {
-            List<int> arrange = new List<int>{3,2,2,1};
-            var n = arrange.Count(); 
+            List<int> arrange = new List<int>{10,34,5,3,4,2,2,1};
+            var n = arrange.Count();
+
+            //for (int i = 0; i < 940; i++)
+            //{
+            //    arrange.Add(i); 
+            //}
+            //for (int i = 0; i < 50; i++)
+            //{
+            //    arrange.Add(2); 
+            //}
             //for (int i = 0; i < n; i++)
             //{
             //    arrange.Add(int.Parse(Console.ReadLine())); 
@@ -21,7 +31,7 @@ namespace Meetings
             var connected = myengine.ReturnConnectedOnes();
             var notConnected = myengine.ReturnKickedOutNumbers(); 
 
-            Console.WriteLine("CONNECTIONS VIEWER ");
+            Console.WriteLine("CONNECTIONS VIEWER");
             if (connected.Count == 0)
             {
                 Console.WriteLine("No connections avaiable");
@@ -40,7 +50,7 @@ namespace Meetings
                 Console.WriteLine("Failed to connect number(s):");
                 notConnected.ForEach(i => Console.Write($"{i.OriginalMeetingNumber} "));
             }
-            Console.WriteLine( );
+            Console.WriteLine();
             Console.WriteLine("Successfully connected number(s):");
             orderedList.ForEach(i => Console.Write($"{i.OriginalMeetingNumber} "));
 
