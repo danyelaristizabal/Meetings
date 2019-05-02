@@ -14,13 +14,17 @@ namespace Meetings
         internal MeetingEngine(List<int> _peopleInt)
         {
             peopleInt = _peopleInt;
+
             ConnectedOnes = new List<Person>();
+
             KickedOut = new List<Person>();
         }
 
         internal void Meet()
         {
+
             ConvertToPersons();
+                
             SaveIndexes();
             Console.WriteLine("Entry:");
             People.ForEach(i => Console.Write($"{ i.MeetingNumber} "));
@@ -55,7 +59,7 @@ namespace Meetings
                         Console.WriteLine("Update meeting number:");
                         People.ForEach(i => Console.Write($"{ i.MeetingNumber} "));
                         Console.WriteLine();
-                }
+            }
 
         }
         internal List<Person> ReturnKickedOutNumbers()
@@ -148,6 +152,7 @@ namespace Meetings
                 People.Insert(0, exceptFirstList[i]);
             }
         }
+
         internal static void ClearUpConnected()
         {
             var fullyConnected = from i in People where i.CheckFullyConnected() select i;

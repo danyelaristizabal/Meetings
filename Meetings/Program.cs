@@ -25,10 +25,15 @@ namespace Meetings
             //}
 
             MeetingEngine myengine = new MeetingEngine(arrange);
+
             myengine.Meet();
+
             Console.WriteLine();
+
             var persons = myengine.ReturnPeople();
+
             var connected = myengine.ReturnConnectedOnes();
+
             var notConnected = myengine.ReturnKickedOutNumbers(); 
 
             Console.WriteLine("CONNECTIONS VIEWER");
@@ -39,19 +44,29 @@ namespace Meetings
             }
 
             Console.WriteLine();
+
             var ordered = connected.OrderBy(i => i.OriginalIndex);
+
             var orderedList = ordered.ToList();
+
             Console.WriteLine("Initial Arrange");
+
             arrange.ForEach(i => Console.Write($"{i} ")); 
+
             Console.WriteLine();
+
             Console.WriteLine();
+
             if (notConnected.Count > 0)
             {
                 Console.WriteLine("Failed to connect number(s):");
                 notConnected.ForEach(i => Console.Write($"{i.OriginalMeetingNumber} "));
             }
+
             Console.WriteLine();
+
             Console.WriteLine("Successfully connected number(s):");
+
             orderedList.ForEach(i => Console.Write($"{i.OriginalMeetingNumber} "));
 
             int k = 0;
@@ -59,8 +74,11 @@ namespace Meetings
             foreach (var person in orderedList)
             {
                 Console.WriteLine();
+
                 Console.Write($"Index:{k},  needed meetings:");
+
                 person.Combinations.ForEach(j => Console.Write($" {arrange[j]}"));
+
                 k++; 
             }
            

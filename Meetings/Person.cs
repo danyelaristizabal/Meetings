@@ -21,6 +21,7 @@ namespace Meetings
                 Combinations.Add(1001);
             }
         }
+
         internal void Connect(Person person ) 
         {
             for (int i = 0; i < Combinations.Count; i++)
