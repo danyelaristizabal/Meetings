@@ -8,7 +8,7 @@ namespace Meetings
     {
         static void Main(string[] args)
         {
-            List<int> arrange = new List<int>{10,34,5,3,4,2,2,1};
+            List<int> arrange = new List<int>{5,10,4,3,2,2,1};
             var n = arrange.Count();
 
             //for (int i = 0; i < 940; i++)

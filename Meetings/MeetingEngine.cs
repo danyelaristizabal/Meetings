@@ -9,14 +9,16 @@ namespace Meetings
         internal static List<Person> ConnectedOnes { get; set; }
         internal static List<Person> KickedOut { get; set; }
         internal static List<int> peopleInt { get; set; }
-
+        internal static List<int> OriginalIndexes { get; set; }
+        internal static List<int> OriginalMeetingNumbers { get; set; }
 
         internal MeetingEngine(List<int> _peopleInt)
         {
             peopleInt = _peopleInt;
 
             ConnectedOnes = new List<Person>();
-
+            OriginalIndexes = new List<int>();
+            OriginalMeetingNumbers = new List<int>();
             KickedOut = new List<Person>();
         }
 
@@ -32,13 +34,22 @@ namespace Meetings
             {
                     Console.WriteLine();
                     Console.WriteLine();
+                    Start:
                     Console.WriteLine("Run");
                     OrganicePersons();
                     Console.WriteLine("Entry Organiced:");
                     People.ForEach(i => Console.Write($"{ i.MeetingNumber} "));
                     if (CheckAreEnough())
                     {
-                        ConnectThePersons();
+                        if(OriginalMeetingNumbers.Count == 0) 
+                        {
+                            People.ForEach(i => OriginalMeetingNumbers.Add(i.OriginalMeetingNumber));
+                            People.ForEach(i => OriginalIndexes.Add(i.OriginalIndex));
+                            Console.WriteLine("Saved in firstCorrect:");
+                            People.ForEach(i => Console.Write($"{ i.MeetingNumber} "));
+                        }
+
+                    ConnectThePersons();
                         Console.WriteLine();
                         Console.WriteLine("Connected:");
                         People.ForEach(i => Console.Write($"{ i.MeetingNumber} "));
@@ -51,6 +62,20 @@ namespace Meetings
 
                     else
                     {
+                        if(People[0].MeetingNumber == 1) 
+                        {
+                            People.Clear();
+                            OriginalMeetingNumbers.ForEach(i => People.Add(new Person(i)));
+                            for (int i = 0; i < OriginalIndexes.Count; i++)
+                            {
+                                People[i].OriginalIndex = OriginalIndexes[i];
+                            }
+                            OriginalIndexes.Clear();
+                            OriginalMeetingNumbers.Clear();
+                            ConnectedOnes.Clear();
+                            KickOutThisNumber();
+                        goto Start; 
+                        }
                         Console.WriteLine();
                         Console.WriteLine($"Kicking out number: {People[0].MeetingNumber}");
                         KickOutThisNumber();
@@ -58,7 +83,6 @@ namespace Meetings
                         UpdateMeetingNumber();
                         Console.WriteLine("Update meeting number:");
                         People.ForEach(i => Console.Write($"{ i.MeetingNumber} "));
-                        Console.WriteLine();
             }
 
         }
@@ -103,6 +127,7 @@ namespace Meetings
 
         internal static bool CheckAreEnough()
         {
+
             return People.Count - 1 >= People[0].MeetingNumber;
         }
         internal static List<Person> Connect(Person person, Person person2)
